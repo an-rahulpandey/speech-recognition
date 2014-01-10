@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />        
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+       
+<!--        <script type="text/javascript" src="js/SpeechGrammar.js"></script>
+        <script type="text/javascript" src="js/SpeechGrammarList.js"></script>
+        <script type="text/javascript" src="js/SpeechRecognition.js"></script>
+        <script type="text/javascript" src="js/SpeechRecognitionAlternative.js"></script>
+        <script type="text/javascript" src="js/SpeechRecognitionError.js"></script>
+        <script type="text/javascript" src="js/SpeechRecognitionEvent.js"></script>
+        <script type="text/javascript" src="js/SpeechRecognitionResult.js"></script>
+        <script type="text/javascript" src="js/SpeechRecognitionResultList.js"></script>-->
+        <script type="text/javascript">
+		var speechrecognizer; 
+          function onDeviceReady(){
+                console.log("Device is ready");
+				speechrecognizer = ;
+            }
+
+            function recognizeSpeech() {
+                var maxMatches = 5;
+                var promptString = "Speak now"; // optional
+                var language = "en-US";                     // optional
+                speechrecognizer.startRecognize(function(result){
+                    alert(result);
+                }, function(errorMessage){
+                    console.log("Error message: " + errorMessage);
+                }, maxMatches, promptString, language);
+            }
+
+            // Show the list of the supported languages
+            function getSupportedLanguages() {
+                window.plugins.speechrecognizer.getSupportedLanguages(function(languages){
+                    // display the json array
+                    alert(languages);
+                }, function(error){
+                    alert("Could not retrieve the supported languages : " + error);
+                });
+            }
+
+            document.addEventListener("deviceready", onDeviceReady, true);
+		
+        </script>
+     </head>
+     <body>
+     <!-- Main Container -->
+<div id = "parent">
+	<!-- Header -->
+	<div id = "header">
+   		<div id = "headertxt">Voice Assistant</div> 
+        
+        <input type = "button" id = "msg" class = "btn btnfirst" />                
+        <input type = "button" id = "sec" class = "btn btnsecond" />
+        <input type = "button" id = "menu" class = "btn btnthird" />
+        
+	</div>
+	<!-- End of Header -->
+    <div id = "first">
+    <img src = "img/1024X768.png" />
+    </div>
+	
+    <div id = "second">
+    <div id = "secondtxt">PHRASE</div>
+    </div>
+	
+    <div id = "third">
+    </div>
+
+	<div id = "footer">
+    	<div id = "cir1" class = "circle">
+        </div>
+       <!-- <input type = "button" id = "menu" class = "btnlast" value="Speak"/> -->
+        <button id="button" class = "btnlast" onclick="recognizeSpeech();"></button>
+        <div id = "cir2" class = "circle">
+        </div>
+    </div>
+    
+</div>
+ 
+<!-- End of Main Container -->
+    </body>
+</html>
