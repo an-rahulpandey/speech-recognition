@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf8">
+  <meta name="viewport" content="width=device-width">
+  <title>Voice Regonition</title>
+
+  <link rel="stylesheet" type="text/css" href="stylesheets/index.css" />
+  <link rel="stylesheet" href="/stylesheets/index.css" />
+
+  <script src="javascripts/onerror.js"></script>
+  <script src="javascripts/console.log.js"></script>
+
+  <!-- cordova.js is served from localhost to ensure the correct version -->
+  <script src="http://localhost:8888/cordova.js"></script>
+  <script src="components/steroids-js/steroids.js"></script>
+
+  <script src="javascripts/application.js"></script>
+</head>
+<body>
+    <div id = "parent">
+        <!-- Header -->
+        <div id = "header">
+            <div id = "headertxt">Voice assistant</div>
+            
+            <input type = "button" onclick = "javascript: SpeechEnd();" id = "msg" class = "btn btnfirst" />
+            <input type = "button" id = "sec" class = "btn btnsecond" />
+            <input type = "button" id = "menu" class = "btn btnthird" />
+            
+        </div>
+        <!-- End of Header -->
+        <div id = "first">
+            <img src = "img/voice.jpg" />
+        </div>
+        
+        <div id = "second">
+            <div id = "secondtxt">PHRASE</div>
+        </div>
+        
+        <div id = "third">
+            <div id = "resultstrip">
+            </div>
+        </div>
+        
+        <div id = "footer">
+            <div id = "cir1" class = "circle">
+            </div>
+            <button id="button" class = "btnlast" onclick="javascript: Speak();">Start</button>
+            <div id = "cir2" class = "circle">
+            </div>
+        </div>
+        
+    
+    <script type="text/javascript" src="/javascripts/index.js"></script>
+    <script type="text/javascript" src="/javascripts/SpeechRecognition.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+        function SpeechStart()
+        {
+            console.log("Speech Started");
+            cordova.exec(null,null,"SpeechRecognition","startRecording",[])
+            //SpeechRecognition.start();
+        }
+    function SpeechEnd()
+    {
+        console.log("Speech End");
+        cordova.exec(function(){ alert(result);},null,"SpeechRecognition","stopRecording",[])
+        //function(){ alert(result);})
+        // SpeechRecognition.stop();
+           setTimeout(function(){cordova.exec(function(output){ document.getElementById("secondtxt").innerHTML=output;},function(){alert("Error");},"SpeechRecognition","showOutput",[])},4000);
+    }
+    function Speak()
+    {
+        var text = document.getElementById("button").innerHTML;
+        
+        if(text == "Start"){
+            document.getElementById("button").innerHTML = "Stop";
+            SpeechStart();
+            
+        }
+        else{
+            document.getElementById("button").innerHTML = "Start";
+            SpeechEnd();
+        }
+    }
+    
+        </script>
+</body>
+</html>
