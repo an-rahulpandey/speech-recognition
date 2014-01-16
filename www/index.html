@@ -39,7 +39,7 @@
             </div>
             <!-- End of Header -->
             <div id = "first">
-                <img src = "img/voice.jpg" />
+                <img src = "ios/img/voice.jpg" />
             </div>
             
             <div id = "second">
@@ -67,16 +67,16 @@
            // app.initialize();
            document.addEventListener('deviceready', onDeviceReady, false);
            function onDeviceReady(){
-               alert("DEvice is ready");
+               //alert("DEvice is ready");
            }
             var appKey = "9fff7016ff8533ee4c144d4fb6055f53";
             function init(){
-                alert("key initialized");
+                //alert("key initialized");
                 cordova.exec(null,null,"CDViSpeechPlugin","init",[appKey]);
             }
         function SpeechStart()
         {
-            alert("Speech Started");
+            //alert("Speech Started");
             cordova.exec(function(result){document.getElementById("secondtxt").innerHTML = result;}, function(){
                          alert("Didn't catch anything,try again");}, "CDViSpeechPlugin", "recognize",[]);
                          //SpeechRecognition.start();
